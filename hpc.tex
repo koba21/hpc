@@ -374,8 +374,9 @@ The fit for the strong scaling is done with the following formula (Lecture 5):
 Where $\alpha$ represents the non-parallelized fraction of the code, and $N$ is the number of processes.\\
 This yields the following value:
 \begin{equation} 
-\alpha=
+\alpha = 0.166 \pm 0.006
 \end{equation}
+This indicates that roughly $83.4\%$ of the code is paralel.
 
 \begin{figure}[h!]
 \begin{center}
@@ -385,28 +386,34 @@ This yields the following value:
 \end{figure}
 The formula for the fit for the weak scaling can be derived quite easily. Again, take $\alpha$ to be the non parallelized fraction of the code. Then, $T_p(N)$, the time needed for the parallel code, is\\
 \begin{equation*}
-T_p(N) = N \cdot (1 - \alpha) + \alpha
+T_p(N) = N \cdot \alpha + (1-\alpha)
 \end{equation*} 
 
 So then, 
 \begin{equation*}
-\text{Speedup($N$)} = \frac{T_s(N)}{T_p(N)} = \frac{T_s}{T_p(N)} = \frac{1}{(1-\alpha)\cdot N + \alpha}
+\text{Speedup($N$)} = \frac{T_s(N)}{T_p(N)} = \frac{T_s}{T_p(N)} = \frac{1}{(\alpha)\cdot N + (1-\alpha)}
 \end{equation*} 
 
 Fitting this over the data yields:
 \begin{equation}
-\alpha = 
+\alpha = 0.145 \pm 0.002
 \end{equation}
+Again, this indicates that around $85.5\%$ of the code is parallelized.
+
 
 \vp
 \subsection{Other Techniques}
 
 \subsubsection{OpenMP}
 
+OpenMP stands for \textit{open multiprocessing}. 
+The fundamental difference between OpenMP and MPI is the parallelization process. MPI communicates between nodes, whereas with OpenMP the parallelization occurs within one node. The so-called \textit{master thread} spawns several \textit{slave threads} (called forking) to speed up a designated section of the code.\\
+What it may lack in flexibility (can only run on shared-memory computers), it makes up in ease of implementation and communication speed.
+
 
 \subsubsection{MPI - OpenMP Hybrid}
 
-
+Implementing both of these methods can make use of the distributed memory architecture of a supercomputer, while further speeding up the runtime by running multiple threads. This combines the advantages of MPI and OpenMP.
 
 \section{Discussion}
 
