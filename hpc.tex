@@ -312,11 +312,13 @@ On the other hand, this freedom makes parallelizing a code a much more complex p
 
 
 \subsubsection{Parallelization Process}
-The main points that needed to be adjusted were the following:
+The main idea for parallelizing the code was to split the initial grid horizontally into equally sized parts in assigning each core a certain portion of it. Each process would then calculate the evolution of the fluid in his portion only. Finally, these different parts would be merged together to create a grid of initial size. This merging is where the most complex part of the paralellization process had to be implemented:\\
+For a process to be able to calculate a given pixel of its grid, it needs information of its four neighbouring pixels. Thus, to calculate the values of the lower and upper most pixels within the grid, each process has to have access to the values of the process below or above of it. The communication of these values was implemented in the following way:\\\\
+Apart from usual MPI formalisms, such as calling \texttt{MPI\_INIT}, \texttt{MPI\_FINALIZE} and other syntactically necessary methods, the main components that needed to be adjusted were 
 
 \begin{itemize}
-\item Workspace allocation
-\item Time step computation
+\item workspace allocation,
+\item time step computation,
 \item Godunov boundaries
 \item Communication between boundaries
 \item Output formatting
