@@ -6,6 +6,6 @@
 \contentsline {subsubsection}{Results}{2}{section*.7}
 \contentsline {subsection}{Other Techniques}{4}{section*.14}
 \contentsline {subsubsection}{OpenMP}{4}{section*.15}
-\contentsline {subsubsection}{MPI - OpenMP Hybrid}{4}{section*.16}
-\contentsline {section}{Discussion}{4}{section*.17}
+\contentsline {subsubsection}{MPI - OpenMP Hybrid}{5}{section*.16}
+\contentsline {section}{Discussion}{5}{section*.17}
 \contentsline {section}{Conclusion}{5}{section*.18}
