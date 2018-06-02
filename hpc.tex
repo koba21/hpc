@@ -312,16 +312,15 @@ On the other hand, this freedom makes parallelizing a code a much more complex p
 
 
 \subsubsection{Parallelization Process}
-The main idea for parallelizing the code was to split the initial grid horizontally into equally sized parts in assigning each core a certain portion of it. Each process would then calculate the evolution of the fluid in his portion only. Finally, these different parts would be merged together to create a grid of initial size. This merging is where the most complex part of the paralellization process had to be implemented:\\
-For a process to be able to calculate a given pixel of its grid, it needs information of its four neighbouring pixels. Thus, to calculate the values of the lower and upper most pixels within the grid, each process has to have access to the values of the process below or above of it. The communication of these values was implemented in the following way:\\\\
-Apart from usual MPI formalisms, such as calling \texttt{MPI\_INIT}, \texttt{MPI\_FINALIZE} and other syntactically necessary methods, the main components that needed to be adjusted were 
+The main idea was to split the initial grid horizontally into equally sized parts in assigning each core a certain portion of it. Each process would then calculate the evolution of the fluid in his portion only. Finally, these different parts would be merged together to recreate the grid with its original size. This merging is where the main part of the paralellization process is happening:\\
+For a process to be able to calculate a given pixel of its grid, it needs information of its four neighbouring pixels. Thus, to calculate the values of the lower and upper most pixels within its grid part, each process had to have access to the values the process below or above of it had calculated. This could be achieved by letting the different processes communicate to each other in the following way:\\
+First the odd processes send their values to the above and below processes while the even ones receive from below and above, respectively. Then, this procedure is repeated with the even ones sending and the odd ones receving. Special attention has to be paid to the lower most and the upper most process, because they do only have to send and receive from one border. The main reason to implement the comunication in this way, was to avoid a deadlock.\\
+Other components of the code that needed to be adjusted were
 
 \begin{itemize}
 \item workspace allocation,
-\item time step computation,
-\item Godunov boundaries
-\item Communication between boundaries
-\item Output formatting
+\item time step computation and
+\item output formatting.
 \end{itemize} 
 
 
