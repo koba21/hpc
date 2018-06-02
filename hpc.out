@@ -4,8 +4,8 @@
 \BOOKMARK [3][]{section*.5}{Introduction}{section*.4}% 4
 \BOOKMARK [3][]{section*.6}{Parallelization Process}{section*.4}% 5
 \BOOKMARK [3][]{section*.7}{Results}{section*.4}% 6
-\BOOKMARK [2][]{section*.14}{Other Techniques}{section*.3}% 7
-\BOOKMARK [3][]{section*.15}{OpenMP}{section*.14}% 8
-\BOOKMARK [3][]{section*.16}{MPI - OpenMP Hybrid}{section*.14}% 9
-\BOOKMARK [1][]{section*.17}{Discussion}{}% 10
-\BOOKMARK [1][]{section*.18}{Conclusion}{}% 11
+\BOOKMARK [2][]{section*.15}{Other Techniques}{section*.3}% 7
+\BOOKMARK [3][]{section*.16}{OpenMP}{section*.15}% 8
+\BOOKMARK [3][]{section*.17}{MPI - OpenMP Hybrid}{section*.15}% 9
+\BOOKMARK [1][]{section*.18}{Discussion}{}% 10
+\BOOKMARK [1][]{section*.19}{Conclusion}{}% 11

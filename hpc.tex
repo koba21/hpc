@@ -364,50 +364,64 @@ To evaluate the performance of the parallelized code we performed a strong and a
 %
 %Note that the $nx$ remained unchanged during the weak scaling run, but $ny$ increased linearly with the number of processes involved, $ny = ny \cdot $ (number of processes).
 
+To specify the percentage of the code that has actually been parallelized, we analyized the speedup (strong scaling) and the efficiency (weak scaling).\\
+In case of the strong scaling, the speedup $s(N)$ is given by
+\begin{equation}
+	s(N) = \frac{t_\text{s}}{t_\text{p}(N)}=\frac{1}{\alpha + \frac{1-\alpha}{N}},
+\end{equation}
+where $t_\text{s}$ is the runtime of the serial code (i.e. one core), $t_\text{p}(N)$ is the paralellized code as a function of the number of processes $N$ and $\alpha$ is the non-parallelized fraction of the code. It is displayed in Figure \ref{fig:speedup}.\\
 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{pictures/speedup_strong.png}
-\caption{Speedup for strong scaling}
+\caption{Speedup for strong scaling.}
+\label{fig:speedup}
 \end{center}
 \end{figure}
 
-
-The fit for the strong scaling is done with the following formula (Lecture 5):
+The actual value for $\alpha$ can be obtained by fitting the function
 \begin{equation}
-\frac{1}{\alpha + \frac{1-\alpha}{N}}
+f(N)=\frac{1}{\alpha + \frac{1-\alpha}{N}}
 \end{equation}
-Where $\alpha$ represents the non-parallelized fraction of the code, and $N$ is the number of processes.\\
-This yields the following value:
+to the measurement points. In our case,
 \begin{equation} 
-\alpha = 0.166 \pm 0.006
+\alpha = 0.166 \pm 0.006.
 \end{equation}
-This indicates that roughly $83.4\%$ of the code is paralel.
+This indicates that roughly $83.4\%$ of the code is parallelized.
+
+\newpage
+In case of the weak scaling, the efficiency $\varepsilon$ is given by
+\begin{equation*}
+	\varepsilon (N) = \frac{t_\text{s}}{t_\text{p}(N)} = 	\frac{1}{\alpha\cdot N + (1-\alpha)}.
+\end{equation*} 
+It is illustrated in Figure \ref{fig:efficiency}. Fitting the function to the measurements yields
+
+
+%The formula for the fit for the weak scaling can be derived quite easily. Again, take $\alpha$ to be the non parallelized fraction of the code. Then, $T_p(N)$, the time needed for the parallel code, is\\
+%\begin{equation*}
+%T_p(N) = N \cdot \alpha + (1-\alpha)
+%\end{equation*} 
+%
+%So then, 
+%\begin{equation*}
+%\text{Speedup($N$)} = \frac{T_s(N)}{T_p(N)} = \frac{T_s}{T_p(N)} = \frac{1}{(\alpha)\cdot N + (1-\alpha)}
+%\end{equation*} 
+
+
+\begin{equation}
+\alpha = 0.145 \pm 0.002.
+\end{equation}
+Again, this indicates that around $85.5\%$ of the code is parallelized.
 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.8\textwidth]{pictures/speedup_weak.png}
 \end{center}
 \caption{Speedup for weak scaling}
+\label{fig:efficiency}
 \end{figure}
-The formula for the fit for the weak scaling can be derived quite easily. Again, take $\alpha$ to be the non parallelized fraction of the code. Then, $T_p(N)$, the time needed for the parallel code, is\\
-\begin{equation*}
-T_p(N) = N \cdot \alpha + (1-\alpha)
-\end{equation*} 
-
-So then, 
-\begin{equation*}
-\text{Speedup($N$)} = \frac{T_s(N)}{T_p(N)} = \frac{T_s}{T_p(N)} = \frac{1}{(\alpha)\cdot N + (1-\alpha)}
-\end{equation*} 
-
-Fitting this over the data yields:
-\begin{equation}
-\alpha = 0.145 \pm 0.002
-\end{equation}
-Again, this indicates that around $85.5\%$ of the code is parallelized.
 
 
-\vp
 \subsection{Other Techniques}
 
 \subsubsection{OpenMP}

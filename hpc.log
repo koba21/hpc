@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600) (preloaded format=pdflatex 2018.3.22)  2 JUN 2018 13:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600) (preloaded format=pdflatex 2018.3.22)  2 JUN 2018 15:26
 entering extended mode
 **./hpc.tex
 (hpc.tex
@@ -1791,47 +1791,36 @@ File: pictures/avg_weak.png Graphic file (type png)
 Package pdftex.def Info: pictures/avg_weak.png  used on input line 337.
 (pdftex.def)             Requested size: 221.95692pt x 166.47113pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--347
+Underfull \hbox (badness 10000) in paragraph at lines 371--373
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 354--355
-
- []
-
-<pictures/speedup_strong.png, id=90, 462.528pt x 346.896pt>
+<pictures/speedup_strong.png, id=91, 462.528pt x 346.896pt>
 File: pictures/speedup_strong.png Graphic file (type png)
 <use pictures/speedup_strong.png>
-Package pdftex.def Info: pictures/speedup_strong.png  used on input line 367.
+Package pdftex.def Info: pictures/speedup_strong.png  used on input line 376.
 (pdftex.def)             Requested size: 362.37598pt x 271.79521pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<pictures/speedup_weak.png, id=91, 462.528pt x 346.896pt>
+[3 <./pictures/avg_strong.png> <./pictures/avg_weak.png>]
+<pictures/speedup_weak.png, id=108, 462.528pt x 346.896pt>
 File: pictures/speedup_weak.png Graphic file (type png)
 <use pictures/speedup_weak.png>
-Package pdftex.def Info: pictures/speedup_weak.png  used on input line 386.
+Package pdftex.def Info: pictures/speedup_weak.png  used on input line 418.
 (pdftex.def)             Requested size: 362.37598pt x 271.79521pt.
-[3 <./pictures/avg_strong.png> <./pictures/avg_weak.png>]
+
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 390--391
-
- []
-
-[4 <./pictures/speedup_strong.png>] [5 <./pictures/speedup_weak.png>] [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 431.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 431.
-
-(hpc.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 431.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 431.
+[4 <./pictures/speedup_strong.png>] [5 <./pictures/speedup_weak.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 448.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 448.
+ (hpc.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 448.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 448.
 Package rerunfilecheck Info: File `hpc.out' has not changed.
-(rerunfilecheck)             Checksum: 4921A4DBDA747B524F0847FD121F76AC;616.
-
+(rerunfilecheck)             Checksum: 2FF2B06A147B67725943622DF15010F1;616.
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1841,13 +1830,13 @@ LaTeX Warning: There were multiply-defined labels.
 ### simple group (level 1) entered at line 231 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 42542 strings out of 495223
- 954365 string characters out of 3181567
- 1160902 words of memory out of 3000000
- 45151 multiletter control sequences out of 15000+200000
- 539511 words of font info for 56 fonts, out of 3000000 for 9000
+ 42539 strings out of 495223
+ 954353 string characters out of 3181567
+ 1160998 words of memory out of 3000000
+ 45150 multiletter control sequences out of 15000+200000
+ 538866 words of font info for 53 fonts, out of 3000000 for 9000
  0 hyphenation exceptions out of 8191
- 62i,12n,96p,10416b,655s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 62i,8n,96p,10416b,655s stack positions out of 5000i,500n,10000p,200000b,50000s
 </home/philipp/.miktex/texmfs/install/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb></home/philipp/.miktex/texmfs/install/fonts/type1/public/amsfo
 nts/cm/cmmi12.pfb></home/philipp/.miktex/texmfs/install/fonts/type1/public/amsf
@@ -1859,9 +1848,9 @@ onts/cm/cmsy10.pfb></home/philipp/.miktex/texmfs/install/fonts/type1/public/ams
 fonts/cm/cmsy8.pfb></home/philipp/.miktex/texmfs/install/fonts/type1/public/ams
 fonts/cm/cmti12.pfb></home/philipp/.miktex/texmfs/install/fonts/type1/public/am
 sfonts/cm/cmtt12.pfb>
-Output written on hpc.pdf (8 pages, 725643 bytes).
+Output written on hpc.pdf (7 pages, 724620 bytes).
 PDF statistics:
- 164 PDF objects out of 1000 (max. 8388607)
+ 163 PDF objects out of 1000 (max. 8388607)
  27 named destinations out of 1000 (max. 500000)
  126 words of extra memory for PDF output out of 10000 (max. 10000000)
 
