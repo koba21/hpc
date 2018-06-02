@@ -326,8 +326,8 @@ Other components of the code that needed to be adjusted were
 
 
 \subsubsection{Results}
-To evaluate the performance of the parallelized code we performed a strong and a weak scaling. More precisely, for the strong scaling we ran the code ten times, each time varying the number of cores from 1 to 36 and from that calculated the mean time per core. The results for the respective runtimes 
-The plots for the respective runtimes of both the strong and weak scaling can be seen below:
+To evaluate the performance of the parallelized code we performed a strong and a weak scaling. More precisely, for the strong scaling we ran the code with 1 to 36 cores and a $ny$ of 9000 units and repeated this ten times to get a mean time per core. Similarly, for the weak scaling we varied the number of cores from 1 to 36, each time incrementing $ny$ by 300 units to keep the grid per core constant. The results of the respective runtimes are displayed in Figure \ref{fig:runtimes}.
+
 \begin{figure}[htbp]
 	\begin{minipage}{0.49\textwidth} 
 	\includegraphics[width=\textwidth]{pictures/avg_strong.png}
@@ -336,29 +336,33 @@ The plots for the respective runtimes of both the strong and weak scaling can be
 	\begin{minipage}{0.49\textwidth}
 	\includegraphics[width=\textwidth]{pictures/avg_weak.png}
 	\end{minipage}
+	\label{fig:runtimes}
 	\caption{Respective runtimes for strong and weak scaling}
 	\label{fig:runtimes}
 \end{figure}
 
-The simulation was run from 1 to 36 cores 10 times each.
 
-The settings for the strong scaling were the following:\\
-\begin{center}
-\begin{tabular}{c|c|c|c}
- $t_{\text{end}}$ & $nx$ & $ny$ & $\der x$ \\ \hline
- 50.0 & 50 & 9000 & 0.08 \\
-\end{tabular}
-\end{center}
 
-The settings for the weak scaling were the following:\\
-\begin{center}
-\begin{tabular}{c|c|c|c}
- $t_{\text{end}}$ & $nx$ & $ny$ & $\der x$ \\ \hline
- 50.0 & 50 & 300 & 0.08 \\
-\end{tabular}
-\end{center}
-
-Note that the $nx$ remained unchanged during the weak scaling run, but $ny$ increased linearly with the number of processes involved, $ny = ny \cdot $ (number of processes).
+%
+%The simulation was run from 1 to 36 cores 10 times each.
+%
+%The settings for the strong scaling were the following:\\
+%\begin{center}
+%\begin{tabular}{c|c|c|c}
+% $t_{\text{end}}$ & $nx$ & $ny$ & $\der x$ \\ \hline
+% 50.0 & 50 & 9000 & 0.08 \\
+%\end{tabular}
+%\end{center}
+%
+%The settings for the weak scaling were the following:\\
+%\begin{center}
+%\begin{tabular}{c|c|c|c}
+% $t_{\text{end}}$ & $nx$ & $ny$ & $\der x$ \\ \hline
+% 50.0 & 50 & 300 & 0.08 \\
+%\end{tabular}
+%\end{center}
+%
+%Note that the $nx$ remained unchanged during the weak scaling run, but $ny$ increased linearly with the number of processes involved, $ny = ny \cdot $ (number of processes).
 
 
 \begin{figure}[h!]
