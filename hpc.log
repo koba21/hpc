@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600) (preloaded format=pdflatex 2018.3.22)  2 JUN 2018 15:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600) (preloaded format=pdflatex 2018.3.22)  2 JUN 2018 15:33
 entering extended mode
 **./hpc.tex
 (hpc.tex
@@ -1813,14 +1813,16 @@ Package pdftex.def Info: pictures/speedup_weak.png  used on input line 418.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[4 <./pictures/speedup_strong.png>] [5 <./pictures/speedup_weak.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 448.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 448.
- (hpc.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 448.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 448.
+[4 <./pictures/speedup_strong.png>] [5 <./pictures/speedup_weak.png>] [6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 452.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 452.
+
+(hpc.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 452.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 452.
 Package rerunfilecheck Info: File `hpc.out' has not changed.
 (rerunfilecheck)             Checksum: 2FF2B06A147B67725943622DF15010F1;616.
+
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1830,9 +1832,9 @@ LaTeX Warning: There were multiply-defined labels.
 ### simple group (level 1) entered at line 231 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 42539 strings out of 495223
- 954353 string characters out of 3181567
- 1160998 words of memory out of 3000000
+ 42540 strings out of 495223
+ 954359 string characters out of 3181567
+ 1161001 words of memory out of 3000000
  45150 multiletter control sequences out of 15000+200000
  538866 words of font info for 53 fonts, out of 3000000 for 9000
  0 hyphenation exceptions out of 8191
@@ -1848,9 +1850,9 @@ onts/cm/cmsy10.pfb></home/philipp/.miktex/texmfs/install/fonts/type1/public/ams
 fonts/cm/cmsy8.pfb></home/philipp/.miktex/texmfs/install/fonts/type1/public/ams
 fonts/cm/cmti12.pfb></home/philipp/.miktex/texmfs/install/fonts/type1/public/am
 sfonts/cm/cmtt12.pfb>
-Output written on hpc.pdf (7 pages, 724620 bytes).
+Output written on hpc.pdf (8 pages, 725227 bytes).
 PDF statistics:
- 163 PDF objects out of 1000 (max. 8388607)
- 27 named destinations out of 1000 (max. 500000)
+ 167 PDF objects out of 1000 (max. 8388607)
+ 28 named destinations out of 1000 (max. 500000)
  126 words of extra memory for PDF output out of 10000 (max. 10000000)
 

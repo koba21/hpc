@@ -417,11 +417,12 @@ Again, this indicates that around $85.5\%$ of the code is parallelized.
 \begin{center}
 \includegraphics[width=0.8\textwidth]{pictures/speedup_weak.png}
 \end{center}
-\caption{Speedup for weak scaling}
+\caption{Efficiency for weak scaling.}
 \label{fig:efficiency}
 \end{figure}
 
 
+\newpage
 \subsection{Other Techniques}
 
 \subsubsection{OpenMP}
@@ -435,9 +436,12 @@ What it may lack in flexibility (can only run on shared-memory computers), it ma
 
 Implementing both of these methods can make use of the distributed memory architecture of a supercomputer, while further speeding up the runtime by running multiple threads. This combines the advantages of MPI and OpenMP.
 
+
+
+\newpage
 \section{Discussion}
 
-As can be seen in Figure \ref{fig:runtimes}, the standard deviation on some of the runtimes can be quite big. This is mainly due that the whole run (going from 1 to 36 precesses) was only performed 10 times. If one of these times is abnormally high or low, averaging over only 10 values will not suppress this spike well enough. 
+As can be seen in Figure \ref{fig:runtimes}, the standard deviation on some of the runtimes can be quite big. This is mainly due that the whole run (going from 1 to 36 processes) was only performed 10 times. If one of these times is abnormally high or low, averaging over only 10 values will not suppress this spike well enough. 
 
 
 
