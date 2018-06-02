@@ -30,6 +30,7 @@
 \usepackage{colortbl}
 \usepackage{pifont}
 \usepackage{savesym}
+\usepackage[font=small]{caption}
 \usepackage{marvosym}
 \usepackage{braket}
 \usepackage{anyfontsize}
@@ -142,6 +143,11 @@ citecolor = black, urlcolor=black] {hyperref}
 \newcommand{\bibspace}{\hspace*{0.83cm}}
 \newcommand{\vp}{\vspace{1cm}}
 \newcommand{\der}{\text{d}}
+
+\tikzstyle{arrow} = [->]
+\tikzset{
+fermion/.style={thick,draw=black, postaction={decorate},
+    decoration={markings,mark=at position 1 with {\arrow[black]{triangle 45}}}}}
 
 
 
@@ -313,16 +319,50 @@ On the other hand, this freedom makes parallelizing a code a much more complex p
 
 \vp
 \subsubsection{Parallelization Process}
-The main idea was to split the initial grid horizontally into equally sized parts in assigning each core a certain portion of it. Each process would then calculate the evolution of the fluid in his portion only. Finally, these different parts would be merged together to recreate the grid with its original size. This merging is where the main part of the paralellization process is happening:\\
-For a process to be able to calculate a given pixel of its grid, it needs information of its four neighbouring pixels. Thus, to calculate the values of the lower and upper most pixels within its grid part, each process had to have access to the values the process below or above of it had calculated. This could be achieved by letting the different processes communicate to each other in the following way:\\
-First the odd processes send their values to the above and below processes while the even ones receive from below and above, respectively. Then, this procedure is repeated with the even ones sending and the odd ones receving. Special attention has to be paid to the lower most and the upper most process, because they do only have to send and receive from one border. The main reason to implement the comunication in this way, was to avoid a deadlock.\\
-Other components of the code that needed to be adjusted were
 
-\begin{itemize}
-\item workspace allocation,
-\item time step computation and
-\item output formatting.
-\end{itemize} 
+\begin{figure}[h!]
+	\begin{minipage}{0.7\linewidth}
+		The main idea was to split the initial grid horizontally into equally sized parts in assigning each core a certain portion of it. Each process would then calculate the evolution of the fluid in his portion only. Finally, these different parts would be merged together to recreate the grid with its original size. This merging is where the main part of the paralellization process is happening:\\
+For a process to be able to calculate a given pixel of its grid, it needs information of its four neighbouring pixels. Thus, to calculate the values of the lower and upper most pixels within its grid part, each process had to have access to the values the process below or above of it had calculated. As illustrated in Figure \ref{fig:tikz}, this could be achieved by letting the different processes communicate to each other in the following way:
+	\end{minipage}	
+	\hfill
+	\begin{minipage}{0.28\linewidth}
+		\resizebox{0.9\linewidth}{1.4\linewidth}{
+		\begin{tikzpicture}[>=triangle 60]
+			\draw (0, 2) -- (0, 0) -- (5, 0) -- (5, 2);
+			\draw (0, 0) -- (5, 0) -- (5, -1) -- (0, -1) -- (0, 0) node [right = 2.5cm, below = 0.1cm] {\LARGE lower + 3};
+			\draw (0, -1) -- (5, -1) -- (5, -2) -- (0, -2) -- (0, -1) node [right = 2.5cm, below = 0.1cm] {\LARGE lower + 2};
+			\draw (0, -2) -- (5, -2) -- (5, -3) -- (0, -3) -- (0, -2) node [right = 2.5cm, below = 0.1cm] {\LARGE lower + 1};
+			\draw (0, -3) -- (5, -3) -- (5, -4) -- (0, -4) -- (0, -3) node [right = 2.5cm, below = 0.1cm] {\LARGE lower};
+			
+			\draw (0, -6) -- (5, -6) -- (5, -7) -- (0, -7) -- (0, -6) node [right = 2.5cm, below = 0.1cm] {\LARGE upper};
+			\draw (0, -7) -- (5, -7) -- (5, -8) -- (0, -8) -- (0, -7) node [right = 2.5cm, below = 0.1cm] {\LARGE upper -1};
+			\draw (0, -8) -- (5, -8) -- (5, -9) -- (0, -9) -- (0, -8) node [right = 2.5cm, below = 0.1cm] {\LARGE upper -2};
+			\draw (0, -9) -- (5, -9) -- (5, -10) -- (0, -10) -- (0, -9) node [right = 2.5cm, below = 0.1cm] {\LARGE upper -3};
+			\draw (0, -12) -- (0, -9) -- (5, -9) -- (5, -12);
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
+(5.5,-2) -- (5.5,0) node [black,xshift=0.8cm] {};
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
+(5.5,-4) -- (5.5,-2) node [black,xshift=0.8cm] {};
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}, very thick,yshift=0pt]
+(5.5,-8) -- (5.5,-6) node [black,xshift=0.8cm] {};
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
+(5.5,-10) -- (5.5,-8) node [black,xshift=0.8cm] {};
+			\draw (6, -1) -- (7, -1) -- (7, -7);
+			\draw (6, -9) -- (8, -9) -- (8, -3);
+    		\draw [arrow] (7, -7) -- (6, -7);
+    		\draw [arrow] (8, -3) -- (6, -3);
+		\end{tikzpicture}
+		}
+		\caption{Communication}
+		\label{fig:tikz}
+		\end{minipage}
+\end{figure}
+
+First the odd processes send their values to the above and below processes while the even ones receive from below and above, respectively. Then, this procedure is repeated with the even ones sending and the odd ones receving. Special attention has to be paid to the lower most and the upper most process, because they do only have to send and receive from one border. The main reason to implement the comunication in this way, was to avoid a deadlock.\\
+Other components of the code that needed to be adjusted were workspace allocation, time step computation and output formatting.
+
+
 
 
 \subsubsection{Results}
