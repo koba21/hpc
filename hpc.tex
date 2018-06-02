@@ -252,7 +252,7 @@ citecolor = black, urlcolor=black] {hyperref}
 The hydro code is a simulation of a fluid or gas in an enclosed system. The initial conditions are set as to generate an unperturbed, homogeneous environment. Then, one can introduce points of higher or lower pressure or density to imitate an explosion or jet. The code then calculates the propagation of this perturbation using Godunov's method and outputs each frame as a single file, which can be used to create an animation.\\
 %The method used to calculate the dynamics of the fluid is the Godunov's.
 
-There are five main components with different functionality to this Fortran based code. They are:
+There are five main components with different functionality to this Fortran based code:
 \begin{itemize}
 	\item \texttt{main.f90}
 	\begin{itemize}
@@ -293,7 +293,7 @@ There are five main components with different functionality to this Fortran base
 	\end{itemize}		
 \end{itemize}
 
-Additionally, there are several input files to set the grid size, initial condictions, etc.
+Additionally, there are several input files to set the grid size with width $nx$ and height $ny$ and other initial conditions.
 
 
 
@@ -423,6 +423,7 @@ Again, this indicates that around $85.5\%$ of the code is parallelized.
 
 
 \newpage
+\vspace*{0.5cm}
 \subsection{Other Techniques}
 
 \subsubsection{OpenMP}
