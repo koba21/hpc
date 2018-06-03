@@ -472,7 +472,7 @@ Again, this indicates that around $85.5\%$ of the code is parallelized.
 \subsubsection{OpenMP}
 
 OpenMP stands for \textit{open multiprocessing}. 
-The fundamental difference between OpenMP and MPI is the parallelization process. MPI communicates between nodes, whereas with OpenMP the parallelization occurs within one node. The so-called \textit{master thread} spawns several \textit{slave threads} (this is called forking) to speed up a designated section of the code. The individual results are then recombined at the end of such a segment (which is called joining)\\
+The fundamental difference between OpenMP and MPI is the parallelization process. MPI communicates between nodes, whereas with OpenMP the parallelization occurs within one node. The so-called \textit{master thread} spawns several \textit{slave threads} (this is called forking) to speed up a designated section of the code. The individual results are then recombined at the end of such a segment (which is called joining). This parallelization process is mostly used to speed up \textit{for loops}.\\
 What it may lack in flexibility (it can only run on shared-memory computers), it makes up in ease of implementation and communication speed.
 
 
@@ -513,9 +513,10 @@ Implementing both of these methods can make use of the distributed memory archit
 \section{Discussion}
 
 
-As can be seen in Figure \ref{fig:runtimes}, the standard deviation on some of the runtimes can be quite big. This is mainly due that the whole run (going from 1 to 36 processes) was only performed 10 times. If one of these times is abnormally high or low, averaging over only 10 values will not suppress this spike well enough.\\\\
-*MENTION BLOCKING VS NON BLOCKING*
+As can be seen in Figure \ref{fig:runtimes}, the standard deviation on some of the runtimes can be quite big. This is mainly due that the whole run (going from 1 to 36 processes) was only performed 10 times. If one of these times is abnormally high, averaging over only 10 values will not suppress this spike well enough. This is what happened in our case. In the tenth iteration, one of the processes took double the time to complete its calculation. This may be due to a temporary performance drop at the Piz Daint supercomputer.\\\\
 
+Our choice in implementing MPI relied on blocking communications. If one were to a non-blocking approach, the running time may be even reduced further, wich could increase the parallelized fraction of the code, $\alpha$.\\
+Although more difficult to implement, having a non-blocking implementation allows communication and computation to overlap, resulting generally in increased performance.\\\\
 
 
 
