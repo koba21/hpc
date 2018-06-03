@@ -4,8 +4,8 @@
 \contentsline {subsubsection}{Introduction}{2}{section*.5}
 \contentsline {subsubsection}{Parallelization Process}{2}{section*.6}
 \contentsline {subsubsection}{Results}{3}{section*.8}
-\contentsline {subsection}{Other Techniques}{5}{section*.16}
-\contentsline {subsubsection}{OpenMP}{5}{section*.17}
-\contentsline {subsubsection}{MPI - OpenMP Hybrid}{5}{section*.18}
-\contentsline {section}{Discussion}{6}{section*.19}
-\contentsline {section}{Conclusion}{6}{section*.20}
+\contentsline {subsection}{Other Techniques}{5}{section*.13}
+\contentsline {subsubsection}{OpenMP}{5}{section*.14}
+\contentsline {subsubsection}{MPI - OpenMP Hybrid}{5}{section*.16}
+\contentsline {section}{Discussion}{6}{section*.17}
+\contentsline {section}{Conclusion}{6}{section*.18}
