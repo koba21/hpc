@@ -371,18 +371,18 @@ Other components of the code that needed to be adjusted were workspace allocatio
 \subsubsection{Results}
 To evaluate the performance of the parallelized code we performed a \textit{strong} and a \textit{weak scaling}. More precisely, for the strong scaling we ran the code with 1 to 36 cores and a $ny$ of 9000 units and repeated this ten times to get a mean time per core. Similarly, for the weak scaling we varied the number of cores from 1 to 36, each time incrementing $ny$ by 300 units to keep the grid per core constant. The results of the respective runtimes are displayed in Figure \ref{fig:runtimes}.
 
-%\begin{figure}[htbp]
-%	\begin{minipage}{0.49\textwidth} 
-%	\includegraphics[width=\textwidth]{pictures/avg_strong.png}
-%	\end{minipage}
-%	\hfill
-%	\begin{minipage}{0.49\textwidth}
-%	\includegraphics[width=\textwidth]{pictures/avg_weak.png}
-%	\end{minipage}
-%	\label{fig:runtimes}
-%	\caption{Respective runtimes for strong and weak scaling}
-%	\label{fig:runtimes}
-%\end{figure}
+\begin{figure}[htbp]
+	\begin{minipage}{0.49\textwidth} 
+	\includegraphics[width=\textwidth]{pictures/avg_strong.png}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.49\textwidth}
+	\includegraphics[width=\textwidth]{pictures/avg_weak.png}
+	\end{minipage}
+	\label{fig:runtimes}
+	\caption{Respective runtimes for strong and weak scaling}
+	\label{fig:runtimes}
+\end{figure}
 
 
 
@@ -414,13 +414,13 @@ In case of the strong scaling, the speedup $s(N)$ is given by
 \end{equation}
 where $t_\text{s}$ is the runtime of the serial code (i.e. one core), $t_\text{p}(N)$ is the paralellized code as a function of the number of processes $N$ and $\alpha$ is the non-parallelized fraction of the code. It is displayed in Figure \ref{fig:speedup}.\\
 
-%\begin{figure}[h!]
-%\begin{center}
-%\includegraphics[width=0.8\textwidth]{pictures/speedup_strong.png}
-%\caption{Speedup for strong scaling.}
-%\label{fig:speedup}
-%\end{center}
-%\end{figure}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{pictures/speedup_strong.png}
+\caption{Speedup for strong scaling.}
+\label{fig:speedup}
+\end{center}
+\end{figure}
 
 The actual value for $\alpha$ can be obtained by fitting the function
 \begin{equation}
@@ -456,13 +456,13 @@ It is illustrated in Figure \ref{fig:efficiency}. Fitting the function to the me
 \end{equation}
 Again, this indicates that around $85.5\%$ of the code is parallelized.
 
-%\begin{figure}[h!]
-%\begin{center}
-%\includegraphics[width=0.8\textwidth]{pictures/speedup_weak.png}
-%\end{center}
-%\caption{Efficiency for weak scaling.}
-%\label{fig:efficiency}
-%\end{figure}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{pictures/speedup_weak.png}
+\end{center}
+\caption{Efficiency for weak scaling.}
+\label{fig:efficiency}
+\end{figure}
 
 
 \newpage
