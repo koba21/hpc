@@ -361,6 +361,80 @@ For a process to be able to calculate a given pixel of its grid, it needs inform
 		\end{minipage}
 \end{figure}
 
+
+\begin{figure}[h!]
+	\begin{minipage}{0.7\linewidth}
+		\begin{minipage}{0.28\linewidth}
+		\resizebox{0.9\linewidth}{1.4\linewidth}{
+		\begin{tikzpicture}[>=triangle 60]
+			\draw (0, 2) -- (0, 0) -- (5, 0) -- (5, 2) node [right = -2.5cm, below = 0.2cm] {\LARGE process $N +1$};
+			\draw (0, 0) -- (5, 0) -- (5, -1) -- (0, -1) -- (0, 0) node [right = 2.5cm, below = 0.1cm] {\LARGE lower + 3};
+			\draw [line width = 3pt] (0, 0) -- (5, 0);
+			\draw (0, -1) -- (5, -1) -- (5, -2) -- (0, -2) -- (0, -1) node [right = 2.5cm, below = 0.1cm] {\LARGE lower + 2};
+			\draw (0, -2) -- (5, -2) -- (5, -3) -- (0, -3) -- (0, -2) node [right = 2.5cm, below = 0.1cm] {\LARGE lower + 1};
+			\draw (0, -3) -- (5, -3) -- (5, -4) -- (0, -4) -- (0, -3) node [right = 2.5cm, below = 0.1cm] {\LARGE lower};
+			
+			\draw (0, -6) -- (5, -6) -- (5, -7) -- (0, -7) -- (0, -6) node [right = 2.5cm, below = 0.1cm] {\LARGE upper};
+			\draw (0, -7) -- (5, -7) -- (5, -8) -- (0, -8) -- (0, -7) node [right = 2.5cm, below = 0.1cm] {\LARGE upper -1};
+			\draw (0, -8) -- (5, -8) -- (5, -9) -- (0, -9) -- (0, -8) node [right = 2.5cm, below = 0.1cm] {\LARGE upper -2};
+			\draw (0, -9) -- (5, -9) -- (5, -10) -- (0, -10) -- (0, -9) node [right = 2.5cm, below = 0.1cm] {\LARGE upper -3};
+			\draw (0, -12) -- (0, -9) -- (5, -9) -- (5, -12) node [right = -2.5cm, below = -1cm] {\LARGE process $N$};
+			\draw [line width = 3pt] (0, -10) -- (5, -10);
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
+(5.5,-2) -- (5.5,0) node [black,xshift=0.8cm] {};
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
+(5.5,-4) -- (5.5,-2) node [black,xshift=0.8cm] {};
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}, very thick,yshift=0pt]
+(5.5,-8) -- (5.5,-6) node [black,xshift=0.8cm] {};
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
+(5.5,-10) -- (5.5,-8) node [black,xshift=0.8cm] {};
+			\draw (6, -1) -- (7, -1) -- (7, -7);
+			\draw[blue] (6, -9) -- (8, -9) -- (8, -3);
+    		\draw [arrow] (7, -7) -- (6, -7);
+    		\draw [blue,arrow] (8, -3) -- (6, -3);
+		\end{tikzpicture}
+		}
+		\caption{First step for odd-numbered process}
+		\label{fig:stepone}
+		\end{minipage}
+	\end{minipage}	
+	\hfill
+	\begin{minipage}{0.28\linewidth}
+		\resizebox{0.9\linewidth}{1.4\linewidth}{
+		\begin{tikzpicture}[>=triangle 60]
+			\draw (0, 2) -- (0, 0) -- (5, 0) -- (5, 2) node [right = -2.5cm, below = 0.2cm] {\LARGE process $N +1$};
+			\draw (0, 0) -- (5, 0) -- (5, -1) -- (0, -1) -- (0, 0) node [right = 2.5cm, below = 0.1cm] {\LARGE lower + 3};
+			\draw [line width = 3pt] (0, 0) -- (5, 0);
+			\draw (0, -1) -- (5, -1) -- (5, -2) -- (0, -2) -- (0, -1) node [right = 2.5cm, below = 0.1cm] {\LARGE lower + 2};
+			\draw (0, -2) -- (5, -2) -- (5, -3) -- (0, -3) -- (0, -2) node [right = 2.5cm, below = 0.1cm] {\LARGE lower + 1};
+			\draw (0, -3) -- (5, -3) -- (5, -4) -- (0, -4) -- (0, -3) node [right = 2.5cm, below = 0.1cm] {\LARGE lower};
+			
+			\draw (0, -6) -- (5, -6) -- (5, -7) -- (0, -7) -- (0, -6) node [right = 2.5cm, below = 0.1cm] {\LARGE upper};
+			\draw (0, -7) -- (5, -7) -- (5, -8) -- (0, -8) -- (0, -7) node [right = 2.5cm, below = 0.1cm] {\LARGE upper -1};
+			\draw (0, -8) -- (5, -8) -- (5, -9) -- (0, -9) -- (0, -8) node [right = 2.5cm, below = 0.1cm] {\LARGE upper -2};
+			\draw (0, -9) -- (5, -9) -- (5, -10) -- (0, -10) -- (0, -9) node [right = 2.5cm, below = 0.1cm] {\LARGE upper -3};
+			\draw (0, -12) -- (0, -9) -- (5, -9) -- (5, -12) node [right = -2.5cm, below = -1cm] {\LARGE process $N$};
+			\draw [line width = 3pt] (0, -10) -- (5, -10);
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
+(5.5,-2) -- (5.5,0) node [black,xshift=0.8cm] {};
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
+(5.5,-4) -- (5.5,-2) node [black,xshift=0.8cm] {};
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}, very thick,yshift=0pt]
+(5.5,-8) -- (5.5,-6) node [black,xshift=0.8cm] {};
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
+(5.5,-10) -- (5.5,-8) node [black,xshift=0.8cm] {};
+			\draw[blue] (6, -1) -- (7, -1) -- (7, -7);
+			\draw (6, -9) -- (8, -9) -- (8, -3);
+    		\draw [blue,arrow] (7, -7) -- (6, -7);
+    		\draw [arrow] (8, -3) -- (6, -3);
+		\end{tikzpicture}
+		}
+		\caption{Second step for odd-numbered process}
+		\label{fig:steptwo}
+		\end{minipage}
+\end{figure}
+
+
 As illustrated in Figure \ref{fig:tikz}, the thick lines are joined together in the actual simulation output. This behaviour could be achieved by letting the different processes communicate to each other in the following way:\\
 First the odd processes send their values to the above and below processes while the even ones receive from below and above, respectively. Then, this procedure is repeated with the even ones sending and the odd ones receving. Special attention has to be paid to the lower most and the upper most process, because they do only have to send and receive from one border. The main reason to implement the comunication in this way, was to avoid a deadlock.
 Other components of the code that needed to be adjusted were workspace allocation, time step computation and output formatting.
@@ -493,6 +567,45 @@ What it may lack in flexibility (it can only run on shared-memory computers), it
 \draw[line width=2pt, blue] (6.5,2) -- (8,2);
 \draw[line width=2pt, blue] (8.5,0.5) -- (10,0.5);
 
+\draw[dashed, line width=0.5pt] (2,0.5) -- (2.5,0.5);
+\draw[dashed, line width=0.5pt] (2,0.5) -- (2.5,1);
+\draw[dashed, line width=0.5pt] (2,0.5) -- (2.5,1.5);
+\draw[dashed, line width=0.5pt] (4,0.5) -- (4.5,0.5);
+\draw[dashed, line width=0.5pt] (4,1) -- (4.5,0.5);
+\draw[dashed, line width=0.5pt] (4,1.5) -- (4.5,0.5);
+\draw[dashed, line width=0.5pt] (6,0.5) -- (6.5,0.5);
+\draw[dashed, line width=0.5pt] (6,0.5) -- (6.5,1);
+\draw[dashed, line width=0.5pt] (6,0.5) -- (6.5,1.5);
+\draw[dashed, line width=0.5pt] (6,0.5) -- (6.5,2);
+\draw[dashed, line width=0.5pt] (8,0.5) -- (8.5,0.5);
+\draw[dashed, line width=0.5pt] (8,1) -- (8.5,0.5);
+\draw[dashed, line width=0.5pt] (8,1.5) -- (8.5,0.5);
+\draw[dashed, line width=0.5pt] (8,2) -- (8.5,0.5);
+
+\draw [
+    thick,
+    decoration={
+        brace,
+        mirror,
+        raise=0.5cm
+    },
+    decorate
+] (2.5,0.3) -- (4,0.3) 
+node [pos=0.5,anchor=north,yshift=-0.55cm] {Parallel region}; 
+
+\draw [
+    thick,
+    decoration={
+        brace,
+        mirror,
+        raise=0.5cm
+    },
+    decorate
+] (6.5,0.3) -- (8,0.3) 
+node [pos=0.5,anchor=north,yshift=-0.55cm] {Parallel region}; 
+
+
+
 \node (T) at (-1,0.05) {Time}; 
 \node (P) at (0,-0.5) {Threads}; 
 \end{tikzpicture}
@@ -505,7 +618,7 @@ What it may lack in flexibility (it can only run on shared-memory computers), it
 
 \subsubsection{MPI - OpenMP Hybrid}
 
-Implementing both of these methods can make use of the distributed memory architecture of a supercomputer, while further speeding up the runtime by occupying multiple threads. This combines the advantages of MPI and OpenMP.
+Implementing both of these methods can make use of the distributed memory architecture of a supercomputer, while further speeding up the runtime by occupying multiple threads. This combines the advantages of both MPI and OpenMP.
 
 
 
@@ -515,13 +628,20 @@ Implementing both of these methods can make use of the distributed memory archit
 
 As can be seen in Figure \ref{fig:runtimes}, the standard deviation on some of the runtimes can be quite big. This is mainly due that the whole run (going from 1 to 36 processes) was only performed 10 times. If one of these times is abnormally high, averaging over only 10 values will not suppress this spike well enough. This is what happened in our case. In the tenth iteration, one of the processes took double the time to complete its calculation. This may be due to a temporary performance drop at the Piz Daint supercomputer.\\\\
 
-Our choice in implementing MPI relied on blocking communications. If one were to a non-blocking approach, the running time may be even reduced further, wich could increase the parallelized fraction of the code, $\alpha$.\\
+Our choice in implementing MPI relied on communications which were $\textit{blocking}$, meaning that execution of the code is halted until they receive ($\texttt{MPI\_RECV()}$) or are able to send ($\texttt{MPI\_SEND()}$). If one were to a use non-blocking approach, the running time may be even reduced further, which could increase the parallelized fraction of the code, $\alpha$.\\
 Although more difficult to implement, having a non-blocking implementation allows communication and computation to overlap, resulting generally in increased performance.\\\\
 
 
-
-
 \section{Conclusion}
+
+The choice of dividing the work along the vertical axis (bigger in size) turned out to be the more beneficial one. As can be seen in in the strong scaling, Figure \ref{fig:speedup}, Increasing the number of cores for a fixed grid size gives diminishing returns, as more time is lost with communications. Also, there is a maximum number of processors that can be used to calculate a simulation of fixed size, as each process needs \textcolor{red}{at least 9 rows to be able to function properly.}\\
+
+Another possibility would be to split the grid both horizontally and vertically. This could be beneficial if one were to work on a square problem. 
+
+
+
+
+
 
 
 
