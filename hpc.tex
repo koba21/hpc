@@ -368,18 +368,18 @@ Other components of the code that needed to be adjusted were workspace allocatio
 \subsubsection{Results}
 To evaluate the performance of the parallelized code we performed a strong and a weak scaling. More precisely, for the strong scaling we ran the code with 1 to 36 cores and a $ny$ of 9000 units and repeated this ten times to get a mean time per core. Similarly, for the weak scaling we varied the number of cores from 1 to 36, each time incrementing $ny$ by 300 units to keep the grid per core constant. The results of the respective runtimes are displayed in Figure \ref{fig:runtimes}.
 
-\begin{figure}[htbp]
-	\begin{minipage}{0.49\textwidth} 
-	\includegraphics[width=\textwidth]{pictures/avg_strong.png}
-	\end{minipage}
-	\hfill
-	\begin{minipage}{0.49\textwidth}
-	\includegraphics[width=\textwidth]{pictures/avg_weak.png}
-	\end{minipage}
-	\label{fig:runtimes}
-	\caption{Respective runtimes for strong and weak scaling}
-	\label{fig:runtimes}
-\end{figure}
+%\begin{figure}[htbp]
+%	\begin{minipage}{0.49\textwidth} 
+%	\includegraphics[width=\textwidth]{pictures/avg_strong.png}
+%	\end{minipage}
+%	\hfill
+%	\begin{minipage}{0.49\textwidth}
+%	\includegraphics[width=\textwidth]{pictures/avg_weak.png}
+%	\end{minipage}
+%	\label{fig:runtimes}
+%	\caption{Respective runtimes for strong and weak scaling}
+%	\label{fig:runtimes}
+%\end{figure}
 
 
 
@@ -411,13 +411,13 @@ In case of the strong scaling, the speedup $s(N)$ is given by
 \end{equation}
 where $t_\text{s}$ is the runtime of the serial code (i.e. one core), $t_\text{p}(N)$ is the paralellized code as a function of the number of processes $N$ and $\alpha$ is the non-parallelized fraction of the code. It is displayed in Figure \ref{fig:speedup}.\\
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.8\textwidth]{pictures/speedup_strong.png}
-\caption{Speedup for strong scaling.}
-\label{fig:speedup}
-\end{center}
-\end{figure}
+%\begin{figure}[h!]
+%\begin{center}
+%\includegraphics[width=0.8\textwidth]{pictures/speedup_strong.png}
+%\caption{Speedup for strong scaling.}
+%\label{fig:speedup}
+%\end{center}
+%\end{figure}
 
 The actual value for $\alpha$ can be obtained by fitting the function
 \begin{equation}
@@ -453,13 +453,13 @@ It is illustrated in Figure \ref{fig:efficiency}. Fitting the function to the me
 \end{equation}
 Again, this indicates that around $85.5\%$ of the code is parallelized.
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.8\textwidth]{pictures/speedup_weak.png}
-\end{center}
-\caption{Efficiency for weak scaling.}
-\label{fig:efficiency}
-\end{figure}
+%\begin{figure}[h!]
+%\begin{center}
+%\includegraphics[width=0.8\textwidth]{pictures/speedup_weak.png}
+%\end{center}
+%\caption{Efficiency for weak scaling.}
+%\label{fig:efficiency}
+%\end{figure}
 
 
 \newpage
@@ -469,20 +469,47 @@ Again, this indicates that around $85.5\%$ of the code is parallelized.
 \subsubsection{OpenMP}
 
 OpenMP stands for \textit{open multiprocessing}. 
-The fundamental difference between OpenMP and MPI is the parallelization process. MPI communicates between nodes, whereas with OpenMP the parallelization occurs within one node. The so-called \textit{master thread} spawns several \textit{slave threads} (called forking) to speed up a designated section of the code.\\
-What it may lack in flexibility (can only run on shared-memory computers), it makes up in ease of implementation and communication speed.
+The fundamental difference between OpenMP and MPI is the parallelization process. MPI communicates between nodes, whereas with OpenMP the parallelization occurs within one node. The so-called \textit{master thread} spawns several \textit{slave threads} (this is called forking) to speed up a designated section of the code. The individual results are then recombined at the end of such a segment (which is called joining)\\
+What it may lack in flexibility (it can only run on shared-memory computers), it makes up in ease of implementation and communication speed.
+
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\draw[->, thick] (-0.2,0) -- (11,0);
+\draw[->, thick] (0,-0.2) -- (0,2);
+
+\draw[line width=2pt, blue] (0.5,0.5) -- (2,0.5);
+\draw[line width=2pt, blue] (2.5,0.5) -- (4,0.5);
+\draw[line width=2pt, blue] (2.5,1) -- (4,1);
+\draw[line width=2pt, blue] (2.5,1.5) -- (4,1.5);
+\draw[line width=2pt, blue] (4.5,0.5) -- (6,0.5);
+\draw[line width=2pt, blue] (6.5,0.5) -- (8,0.5);
+\draw[line width=2pt, blue] (6.5,1) -- (8,1);
+\draw[line width=2pt, blue] (6.5,1.5) -- (8,1.5);
+\draw[line width=2pt, blue] (6.5,2) -- (8,2);
+\draw[line width=2pt, blue] (8.5,0.5) -- (10,0.5);
+
+\node (T) at (-1,0.05) {Time}; 
+\node (P) at (0,-0.5) {Threads}; 
+\end{tikzpicture}
+\caption{Operating principle of OpenMP}
+\label{fig:openmp}
+\end{figure}
+
+
 
 
 \subsubsection{MPI - OpenMP Hybrid}
 
-Implementing both of these methods can make use of the distributed memory architecture of a supercomputer, while further speeding up the runtime by running multiple threads. This combines the advantages of MPI and OpenMP.
+Implementing both of these methods can make use of the distributed memory architecture of a supercomputer, while further speeding up the runtime by occupying multiple threads. This combines the advantages of MPI and OpenMP.
 
 
 
 \newpage
 \section{Discussion}
 
-As can be seen in Figure \ref{fig:runtimes}, the standard deviation on some of the runtimes can be quite big. This is mainly due that the whole run (going from 1 to 36 processes) was only performed 10 times. If one of these times is abnormally high or low, averaging over only 10 values will not suppress this spike well enough. 
+As can be seen in Figure \ref{fig:runtimes}, the standard deviation on some of the runtimes can be quite big. This is mainly due that the whole run (increasing from 1 to 36 processes) was only performed 10 times. If one of these times is abnormally high, averaging over only 10 values will not suppress this spike well enough. 
 
 
 
