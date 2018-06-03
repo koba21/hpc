@@ -255,7 +255,7 @@ fermion/.style={thick,draw=black, postaction={decorate},
 \newpage
 \section{Hydro Code Explained}
 
-The hydro code is a simulation of a fluid or gas in an enclosed system. The initial conditions are set as to generate an unperturbed, homogeneous environment. Then, one can introduce points of higher or lower pressure or density to imitate an explosion or jet. The code then calculates the propagation of this perturbation using Godunov's method and outputs each frame as a single file, which can be used to create an animation.\\
+The hydro code is a simulation of a fluid or gas in an enclosed system. The initial conditions are set as to generate an unperturbed, homogeneous environment. Then, one can introduce points of higher or lower pressure or density to imitate an explosion or a jet. The code then calculates the propagation of this perturbation using Godunov's method and outputs each frame as a single file, which can be used to create an animation.\\
 %The method used to calculate the dynamics of the fluid is the Godunov's.
 
 There are five main components with different functionality to this Fortran based code:
@@ -265,9 +265,9 @@ There are five main components with different functionality to this Fortran base
 		\item calls \texttt{init\_hydro} to initialize the grid with the initial conditions
 		\item executes the main time loop by calling
 		\begin{itemize}
-		\item \texttt{output} to generate output data
 		\item \texttt{cmpdt} to compute the time step
 		\item \texttt{godunov} to calculate the fluid dynamics
+		\item \texttt{output} to generate output data
 		\end{itemize}
 	\end{itemize}
 	\item \texttt{module\_hydro\_principal.f90} contains the subroutines
@@ -322,8 +322,8 @@ On the other hand, this freedom makes parallelizing a code a much more complex p
 
 \begin{figure}[h!]
 	\begin{minipage}{0.7\linewidth}
-		The main idea was to split the initial grid horizontally into equally sized parts in assigning each core a certain portion of it. Each process would then calculate the evolution of the fluid in his portion only. Finally, these different parts would be merged together to recreate the grid with its original size. This merging is where the main part of the paralellization process is happening:\\
-For a process to be able to calculate a given pixel of its grid, it needs information of its four neighbouring pixels. Thus, to calculate the values of the lower and upper most pixels within its grid part, each process had to have access to the values the process below or above of it had calculated. For this purpose, so called \textit{ghost cells} were introduced. Those are one-dimensional rows of pixels that only exist for calcuation purposes, but are not shown in the actual simulation.
+		The main idea was to split the initial grid horizontally into equally sized parts in assigning each core a certain portion of it. Each process would then calculate the evolution of the fluid in his portion only. Finally, these different parts would be merged together to recreate the grid with its original size. This \textcolor{red}{merging} is where the main part of the paralellization process is happening:\\
+For a process to be able to calculate a given pixel of its grid, it needs information of its four neighbouring pixels. Thus, to calculate the values of the lower and upper most pixels within its grid part, they need access to the calculated values from the processes above and below. For this purpose, the so called \textit{ghost cells} were introduced. These are one-dimensional rows of pixels that only exist for calculation purposes, but are not present in the actual simulation.
 	\end{minipage}	
 	\hfill
 	\begin{minipage}{0.28\linewidth}
@@ -363,8 +363,7 @@ For a process to be able to calculate a given pixel of its grid, it needs inform
 
 
 \begin{figure}[h!]
-	\begin{minipage}{0.7\linewidth}
-		\begin{minipage}{0.28\linewidth}
+		\begin{minipage}{0.35\linewidth}
 		\resizebox{0.9\linewidth}{1.4\linewidth}{
 		\begin{tikzpicture}[>=triangle 60]
 			\draw (0, 2) -- (0, 0) -- (5, 0) -- (5, 2) node [right = -2.5cm, below = 0.2cm] {\LARGE process $N +1$};
@@ -382,24 +381,26 @@ For a process to be able to calculate a given pixel of its grid, it needs inform
 			\draw [line width = 3pt] (0, -10) -- (5, -10);
 			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
 (5.5,-2) -- (5.5,0) node [black,xshift=0.8cm] {};
-			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
+			\draw [blue,decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
 (5.5,-4) -- (5.5,-2) node [black,xshift=0.8cm] {};
 			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}, very thick,yshift=0pt]
 (5.5,-8) -- (5.5,-6) node [black,xshift=0.8cm] {};
-			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
+			\draw [blue,decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
 (5.5,-10) -- (5.5,-8) node [black,xshift=0.8cm] {};
 			\draw (6, -1) -- (7, -1) -- (7, -7);
 			\draw[blue] (6, -9) -- (8, -9) -- (8, -3);
     		\draw [arrow] (7, -7) -- (6, -7);
     		\draw [blue,arrow] (8, -3) -- (6, -3);
+		
+		\node[blue] (snd) at (6.7,-9.5) {\large send};
+		
 		\end{tikzpicture}
 		}
-		\caption{First step for odd-numbered process}
+		\caption{First step for odd-numbered processes}
 		\label{fig:stepone}
 		\end{minipage}
-	\end{minipage}	
 	\hfill
-	\begin{minipage}{0.28\linewidth}
+	\begin{minipage}{0.35\linewidth}
 		\resizebox{0.9\linewidth}{1.4\linewidth}{
 		\begin{tikzpicture}[>=triangle 60]
 			\draw (0, 2) -- (0, 0) -- (5, 0) -- (5, 2) node [right = -2.5cm, below = 0.2cm] {\LARGE process $N +1$};
@@ -415,11 +416,11 @@ For a process to be able to calculate a given pixel of its grid, it needs inform
 			\draw (0, -9) -- (5, -9) -- (5, -10) -- (0, -10) -- (0, -9) node [right = 2.5cm, below = 0.1cm] {\LARGE upper -3};
 			\draw (0, -12) -- (0, -9) -- (5, -9) -- (5, -12) node [right = -2.5cm, below = -1cm] {\LARGE process $N$};
 			\draw [line width = 3pt] (0, -10) -- (5, -10);
-			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
+			\draw [blue,decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
 (5.5,-2) -- (5.5,0) node [black,xshift=0.8cm] {};
 			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
 (5.5,-4) -- (5.5,-2) node [black,xshift=0.8cm] {};
-			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}, very thick,yshift=0pt]
+			\draw [blue,decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}, very thick,yshift=0pt]
 (5.5,-8) -- (5.5,-6) node [black,xshift=0.8cm] {};
 			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
 (5.5,-10) -- (5.5,-8) node [black,xshift=0.8cm] {};
@@ -427,23 +428,26 @@ For a process to be able to calculate a given pixel of its grid, it needs inform
 			\draw (6, -9) -- (8, -9) -- (8, -3);
     		\draw [blue,arrow] (7, -7) -- (6, -7);
     		\draw [arrow] (8, -3) -- (6, -3);
+		
+		\node[blue] (rcv) at (6.7,-7.5) {\large receive};
+		
 		\end{tikzpicture}
 		}
-		\caption{Second step for odd-numbered process}
+		\caption{Second step for odd-numbered processes}
 		\label{fig:steptwo}
 		\end{minipage}
 \end{figure}
 
 
-As illustrated in Figure \ref{fig:tikz}, the thick lines are joined together in the actual simulation output. This behaviour could be achieved by letting the different processes communicate to each other in the following way:\\
-First the odd processes send their values to the above and below processes while the even ones receive from below and above, respectively. Then, this procedure is repeated with the even ones sending and the odd ones receving. Special attention has to be paid to the lower most and the upper most process, because they do only have to send and receive from one border. The main reason to implement the comunication in this way, was to avoid a deadlock.
+As illustrated in Figure \ref{fig:tikz}, the thick lines are joined together in the actual simulation output. This behaviour can be achieved by letting the different processes communicate to each other in the following way:\\
+First the odd-numbered processes send their values to the above and below processes, while the even-numbered ones receive from below and above, respectively. Then, this procedure is repeated with the even-numbered ones sending and the odd-numbered ones receiving. Special attention has to be paid to the lower most and the upper most process, because they do only have to send and receive from one border. The main reason to implement the comunication in this way, was to avoid a deadlock.\\
 Other components of the code that needed to be adjusted were workspace allocation, time step computation and output formatting.
 
 
 
 
 \subsubsection{Results}
-To evaluate the performance of the parallelized code we performed a \textit{strong} and a \textit{weak scaling}. More precisely, for the strong scaling we ran the code with 1 to 36 cores and a $ny$ of 9000 units and repeated this ten times to get a mean time per core. Similarly, for the weak scaling we varied the number of cores from 1 to 36, each time incrementing $ny$ by 300 units to keep the grid per core constant. The results of the respective runtimes are displayed in Figure \ref{fig:runtimes}.
+To evaluate the performance of the parallelized code, a \textit{strong} and a \textit{weak scaling} was performed. More precisely, for the strong scaling we ran the code with 1 to 36 cores and a $ny$ of 9000 units. This was repeated ten times to get a mean time per core. Similarly, for the weak scaling we varied the number of cores from 1 to 36, each time incrementing $ny$ by 300 units to keep the grid size per core constant. The results of the respective runtimes are displayed in Figure \ref{fig:runtimes}.
 
 \begin{figure}[htbp]
 	\begin{minipage}{0.49\textwidth} 
@@ -546,7 +550,7 @@ Again, this indicates that around $85.5\%$ of the code is parallelized.
 \subsubsection{OpenMP}
 
 OpenMP stands for \textit{open multiprocessing}. 
-The fundamental difference between OpenMP and MPI is the parallelization process. MPI communicates between nodes, whereas with OpenMP the parallelization occurs within one node. The so-called \textit{master thread} spawns several \textit{slave threads} (this is called forking) to speed up a designated section of the code. The individual results are then recombined at the end of such a segment (which is called joining). This parallelization process is mostly used to speed up \textit{for loops}.\\
+The fundamental difference between OpenMP and MPI is the parallelization process. MPI communicates between nodes, whereas with OpenMP the parallelization occurs within one node. The so-called \textit{master thread} spawns several \textit{slave threads} (in a process called forking) to speed up a designated section of the code. The individual results are then recombined at the end of such a segment (which is called joining). This parallelization process is mostly used to speed up \textit{for loops}.\\
 What it may lack in flexibility (it can only run on shared-memory computers), it makes up in ease of implementation and communication speed.
 
 
@@ -626,7 +630,7 @@ Implementing both of these methods can make use of the distributed memory archit
 \section{Discussion}
 
 
-As can be seen in Figure \ref{fig:runtimes}, the standard deviation on some of the runtimes can be quite big. This is mainly due that the whole run (going from 1 to 36 processes) was only performed 10 times. If one of these times is abnormally high, averaging over only 10 values will not suppress this spike well enough. This is what happened in our case. In the tenth iteration, one of the processes took double the time to complete its calculation. This may be due to a temporary performance drop at the Piz Daint supercomputer.\\\\
+As can be seen in Figure \ref{fig:runtimes}, the standard deviation on some of the runtimes can be quite big. This is mainly due that the whole run (going from 1 to 36 processes) was only performed 10 times. If one of these times is abnormally high, averaging over only 10 values will not suppress this spike well enough. This is what happened in our case. In the tenth iteration, one of the processes took twice the time it would normally to complete its calculation. This may be due to a temporary performance drop at the Piz Daint supercomputer.\\\\
 
 Our choice in implementing MPI relied on communications which were $\textit{blocking}$, meaning that execution of the code is halted until they receive ($\texttt{MPI\_RECV()}$) or are able to send ($\texttt{MPI\_SEND()}$). If one were to a use non-blocking approach, the running time may be even reduced further, which could increase the parallelized fraction of the code, $\alpha$.\\
 Although more difficult to implement, having a non-blocking implementation allows communication and computation to overlap, resulting generally in increased performance.\\\\
@@ -634,7 +638,7 @@ Although more difficult to implement, having a non-blocking implementation allow
 
 \section{Conclusion}
 
-The choice of dividing the work along the vertical axis (bigger in size) turned out to be the more beneficial one. As can be seen in in the strong scaling, Figure \ref{fig:speedup}, Increasing the number of cores for a fixed grid size gives diminishing returns, as more time is lost with communications. Also, there is a maximum number of processors that can be used to calculate a simulation of fixed size, as each process needs \textcolor{red}{at least 9 rows to be able to function properly.}\\
+The choice of dividing the work along the vertical axis (bigger in size) turned out to be the more beneficial one. As can be seen in in the strong scaling, Figure \ref{fig:speedup}, increasing the number of cores above a certain value for a fixed grid size gives diminishing returns, as more time is lost with communications. Also, there is a maximum number of processors that can be used to carry out a simulation of fixed size, as each process needs \textcolor{red}{at least 9 rows to be able to function properly.}\\
 
 Another possibility would be to split the grid both horizontally and vertically. This could be beneficial if one were to work on a square problem. 
 
