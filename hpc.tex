@@ -331,7 +331,7 @@ For a process to be able to calculate a given pixel of its grid, it needs inform
 		\begin{tikzpicture}[>=triangle 60]
 			\draw (0, 2) -- (0, 0) -- (5, 0) -- (5, 2) node [right = -2.5cm, below = 0.2cm] {\LARGE process $N +1$};
 			\draw (0, 0) -- (5, 0) -- (5, -1) -- (0, -1) -- (0, 0) node [right = 2.5cm, below = 0.1cm] {\LARGE lower + 3};
-			\draw [line width = 3pt] (0, 0) -- (5, 0);
+			\draw [line width = 2.5pt] (0, 0) -- (5, 0);
 			\draw (0, -1) -- (5, -1) -- (5, -2) -- (0, -2) -- (0, -1) node [right = 2.5cm, below = 0.1cm] {\LARGE lower + 2};
 			\draw (0, -2) -- (5, -2) -- (5, -3) -- (0, -3) -- (0, -2) node [right = 2.5cm, below = 0.1cm] {\LARGE lower + 1};
 			\draw (0, -3) -- (5, -3) -- (5, -4) -- (0, -4) -- (0, -3) node [right = 2.5cm, below = 0.1cm] {\LARGE lower};
@@ -341,14 +341,14 @@ For a process to be able to calculate a given pixel of its grid, it needs inform
 			\draw (0, -8) -- (5, -8) -- (5, -9) -- (0, -9) -- (0, -8) node [right = 2.5cm, below = 0.1cm] {\LARGE upper -2};
 			\draw (0, -9) -- (5, -9) -- (5, -10) -- (0, -10) -- (0, -9) node [right = 2.5cm, below = 0.1cm] {\LARGE upper -3};
 			\draw (0, -12) -- (0, -9) -- (5, -9) -- (5, -12) node [right = -2.5cm, below = -1cm] {\LARGE process $N$};
-			\draw [line width = 3pt] (0, -10) -- (5, -10);
-			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
+			\draw [line width = 2.5pt] (0, -10) -- (5, -10);
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}, thick,yshift=0pt]
 (5.5,-2) -- (5.5,0) node [black,xshift=0.8cm] {};
-			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}, thick,yshift=0pt]
 (5.5,-4) -- (5.5,-2) node [black,xshift=0.8cm] {};
-			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}, very thick,yshift=0pt]
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},  thick,yshift=0pt]
 (5.5,-8) -- (5.5,-6) node [black,xshift=0.8cm] {};
-			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt},very thick,yshift=0pt]
+			\draw [decorate,decoration={brace,amplitude=10pt,mirror,raise=4pt}, thick,yshift=0pt]
 (5.5,-10) -- (5.5,-8) node [black,xshift=0.8cm] {};
 			\draw (6, -1) -- (7, -1) -- (7, -7);
 			\draw (6, -9) -- (8, -9) -- (8, -3);
