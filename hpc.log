@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600) (preloaded format=pdflatex 2018.3.22)  3 JUN 2018 11:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6600) (preloaded format=pdflatex 2018.3.22)  3 JUN 2018 11:28
 entering extended mode
 **./hpc.tex
 (hpc.tex
@@ -1804,22 +1804,22 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 <pictures/avg_strong.png, id=92, 462.528pt x 346.896pt>
 File: pictures/avg_strong.png Graphic file (type png)
 <use pictures/avg_strong.png>
-Package pdftex.def Info: pictures/avg_strong.png  used on input line 375.
+Package pdftex.def Info: pictures/avg_strong.png  used on input line 376.
 (pdftex.def)             Requested size: 221.95692pt x 166.47113pt.
 <pictures/avg_weak.png, id=94, 462.528pt x 346.896pt>
 File: pictures/avg_weak.png Graphic file (type png)
 <use pictures/avg_weak.png>
-Package pdftex.def Info: pictures/avg_weak.png  used on input line 379.
+Package pdftex.def Info: pictures/avg_weak.png  used on input line 380.
 (pdftex.def)             Requested size: 221.95692pt x 166.47113pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 413--415
+Underfull \hbox (badness 10000) in paragraph at lines 414--416
 
  []
 
 <pictures/speedup_strong.png, id=96, 462.528pt x 346.896pt>
 File: pictures/speedup_strong.png Graphic file (type png)
 <use pictures/speedup_strong.png>
-Package pdftex.def Info: pictures/speedup_strong.png  used on input line 418.
+Package pdftex.def Info: pictures/speedup_strong.png  used on input line 419.
 (pdftex.def)             Requested size: 362.37598pt x 271.79521pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -1828,23 +1828,23 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <pictures/speedup_weak.png, id=112, 462.528pt x 346.896pt>
 File: pictures/speedup_weak.png Graphic file (type png)
 <use pictures/speedup_weak.png>
-Package pdftex.def Info: pictures/speedup_weak.png  used on input line 460.
+Package pdftex.def Info: pictures/speedup_weak.png  used on input line 461.
 (pdftex.def)             Requested size: 362.37598pt x 271.79521pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [4 <./pictures/speedup_strong.png>] [5 <./pictures/speedup_weak.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 487--489
+Underfull \hbox (badness 10000) in paragraph at lines 488--490
 
  []
 
 [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 496.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 496.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 497.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 497.
  (hpc.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 496.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 496.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 497.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 497.
 Package rerunfilecheck Info: File `hpc.out' has not changed.
 (rerunfilecheck)             Checksum: D574FCE4C8BF3A768958E1475CFD4EC7;616.
 
@@ -1877,7 +1877,7 @@ onts/cm/cmsy10.pfb></home/philipp/.miktex/texmfs/install/fonts/type1/public/ams
 fonts/cm/cmsy8.pfb></home/philipp/.miktex/texmfs/install/fonts/type1/public/ams
 fonts/cm/cmti12.pfb></home/philipp/.miktex/texmfs/install/fonts/type1/public/am
 sfonts/cm/cmtt12.pfb>
-Output written on hpc.pdf (8 pages, 748695 bytes).
+Output written on hpc.pdf (8 pages, 748690 bytes).
 PDF statistics:
  177 PDF objects out of 1000 (max. 8388607)
  29 named destinations out of 1000 (max. 500000)

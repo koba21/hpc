@@ -361,7 +361,8 @@ For a process to be able to calculate a given pixel of its grid, it needs inform
 		\end{minipage}
 \end{figure}
 
-As illustrated in Figure \ref{fig:tikz}, the thick lines are joined together in the actual simulation output. This behaviour could be achieved by letting the different processes communicate to each other in the following way: First the odd processes send their values to the above and below processes while the even ones receive from below and above, respectively. Then, this procedure is repeated with the even ones sending and the odd ones receving. Special attention has to be paid to the lower most and the upper most process, because they do only have to send and receive from one border. The main reason to implement the comunication in this way, was to avoid a deadlock.
+As illustrated in Figure \ref{fig:tikz}, the thick lines are joined together in the actual simulation output. This behaviour could be achieved by letting the different processes communicate to each other in the following way:\\
+First the odd processes send their values to the above and below processes while the even ones receive from below and above, respectively. Then, this procedure is repeated with the even ones sending and the odd ones receving. Special attention has to be paid to the lower most and the upper most process, because they do only have to send and receive from one border. The main reason to implement the comunication in this way, was to avoid a deadlock.
 Other components of the code that needed to be adjusted were workspace allocation, time step computation and output formatting.
 
 
