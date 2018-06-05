@@ -3,7 +3,7 @@
 \contentsline {subsection}{MPI}{2}{section*.4}
 \contentsline {subsubsection}{Introduction}{2}{section*.5}
 \contentsline {subsubsection}{Parallelization Process}{2}{section*.6}
-\contentsline {subsubsection}{Results}{3}{section*.8}
+\contentsline {subsubsection}{Performance Analysis \& Results}{3}{section*.8}
 \contentsline {subsection}{Other Techniques}{6}{section*.16}
 \contentsline {subsubsection}{OpenMP}{6}{section*.17}
 \contentsline {subsubsection}{MPI - OpenMP Hybrid}{6}{section*.19}
