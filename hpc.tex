@@ -322,8 +322,9 @@ On the other hand, this freedom makes parallelizing a code a much more complex p
 %
 %\begin{figure}[h!]
 %	\begin{minipage}{0.7\linewidth}
-The main idea was to split the initial grid horizontally into equally sized parts in assigning each core a certain portion of it. Each process would then calculate the evolution of the fluid in his portion only. Finally, these different parts would be merged together to recreate the grid with its original size. This \textcolor{red}{merging} is where the main part of the paralellization process is happening:\\
-For a process to be able to calculate a given pixel of its grid, it needs information of its four neighbouring pixels. Thus, to calculate the values of the lower and upper most pixels within its grid part, they need access to the calculated values from the processes above and below. For this purpose, the so called \textit{ghost cells} were introduced. These are one-dimensional rows of pixels that only exist for calculation purposes, but are not present in the actual simulation.
+The main idea was to split the initial grid horizontally into equally sized parts in assigning each core a certain portion of it. Each process would then calculate the evolution of the fluid in his portion only. Finally, these different parts would be merged together to recreate the grid with its original size.\\
+%This \textcolor{red}{merging} is where the main part of the paralellization process is happening:\\
+For a process to be able to calculate a pixel of its grid, it needs information of its four neighbouring pixels. Thus, to calculate the values of the lower and upper most pixels within its grid part, it needs access to the calculated values from the processes above and below. For this purpose, the so called \textit{ghost cells} were introduced. These are arrays of pixels that only exist for calculation purposes, but are not present in the actual simulation.
 %	\end{minipage}	
 %	\hfill
 %	\begin{minipage}{0.28\linewidth}
@@ -360,6 +361,9 @@ For a process to be able to calculate a given pixel of its grid, it needs inform
 %		\label{fig:tikz}
 %		\end{minipage}
 %\end{figure}
+As illustrated in Figure \ref{fig:stepone} and Figure \ref{fig:steptwo}, the thick lines are joined together in the actual simulation output. This behaviour can be achieved by setting up the communication, which was also the main part of the parallelization process, in the following way:\\
+First the odd-numbered processes send their values to the above and below processes (Figure \ref{fig:stepone}), while the even-numbered ones receive from below and above, respectively. Then, this procedure is repeated with the even-numbered ones sending and the odd-numbered ones receiving (Figure \ref{fig:steptwo}). Special attention has to be paid to the lower most and the upper most process, because they do only have to send and receive from one border. The main reason to implement the comunication in this way, was to avoid a deadlock.\\
+Other components of the code that needed to be adjusted were workspace allocation, time step computation and output formatting.
 
 \begin{figure}[h!]
 \begin{center}
@@ -442,11 +446,6 @@ For a process to be able to calculate a given pixel of its grid, it needs inform
 		\end{minipage}
 		\end{center}
 \end{figure}
-
-
-As illustrated in Figure \ref{fig:stepone} and Figure \ref{fig:steptwo}, the thick lines are joined together in the actual simulation output. This behaviour can be achieved by letting the different processes communicate to each other in the following way:\\
-First the odd-numbered processes send their values to the above and below processes (Figure \ref{fig:stepone}), while the even-numbered ones receive from below and above, respectively. Then, this procedure is repeated with the even-numbered ones sending and the odd-numbered ones receiving (Figure \ref{fig:steptwo}). Special attention has to be paid to the lower most and the upper most process, because they do only have to send and receive from one border. The main reason to implement the comunication in this way, was to avoid a deadlock.\\
-Other components of the code that needed to be adjusted were workspace allocation, time step computation and output formatting.
 
 
 
