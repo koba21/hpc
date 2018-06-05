@@ -634,16 +634,13 @@ Implementing both of these methods can make use of the distributed memory archit
 
 
 As can be seen in Figure \ref{fig:runtimes}, the standard deviation on some of the runtimes can be quite big. This is mainly due that the whole run (going from 1 to 36 processes) was only performed 10 times. If one of these times is abnormally high, averaging over only 10 values will not suppress this spike well enough. This is what happened in our case. In the tenth iteration, one of the processes took twice the time it would normally to complete its calculation. This may be due to a temporary performance drop at the Piz Daint supercomputer.\\\\
-Our choice in implementing MPI relied on communications which were $\textit{blocking}$, meaning that execution of the code is halted until receiving ($\texttt{MPI\_RECV()}$) or sending ($\texttt{MPI\_SEND()}$) is terminated. If one were to a use non-blocking approach, the runtime may be reduced even further, which could increase the parallelized fraction of the code $\alpha$.\\
-\textcolor{red}{Although more difficult to implement, having a non-blocking implementation allows communication and computation to overlap, resulting generally in increased performance.}
-
+Our choice in implementing MPI relied on communications which were $\textit{blocking}$, meaning that execution of the code is halted until the process of receiving ($\texttt{MPI\_RECV()}$) or sending ($\texttt{MPI\_SEND()}$) is terminated. If one were to a use \textit{non-blocking} approach, the runtime may be reduced even further, by allowing communication and computation to overlap. This could increase the parallelized fraction of the code $\alpha$, but is generally more difficult to implement.\\\\
+The choice of dividing the work along the vertical axis (bigger in size) turned out to be the more beneficial one. As can be seen in in the strong scaling (Figure \ref{fig:speedup}), increasing the number of cores above a certain value for a fixed grid size gives diminishing returns, as more time is lost with communications.\\ 
+Another possibility would be to split the grid both horizontally and vertically. This could be beneficial if one were to work on a square problem. 
 \vp
 
 
 \section{Conclusion}
-
-The choice of dividing the work along the vertical axis (bigger in size) turned out to be the more beneficial one. As can be seen in in the strong scaling (Figure \ref{fig:speedup}), increasing the number of cores above a certain value for a fixed grid size gives diminishing returns, as more time is lost with communications. Also, there is a maximum number of processors that can be used to carry out a simulation of fixed size, as each process needs \textcolor{red}{at least 9 rows to be able to function properly.}\\
-Another possibility would be to split the grid both horizontally and vertically. This could be beneficial if one were to work on a square problem. 
 
 
 
